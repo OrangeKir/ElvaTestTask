@@ -34,29 +34,11 @@
                 var content = new byte[webStream.Length];
                 webStream.Read(content, 0, content.Length);
 
-                content = ContentCutter(content, frequency);
-                
                 using (var fileStream = new FileStream(Path.Combine(FilePath, fileName), FileMode.OpenOrCreate))
                 {
                     fileStream.Write(content);
                 }
             }
-        }
-
-        public byte[] ContentCutter(byte[] content, int frequency)
-        {
-            if (frequency == 1)
-            {
-                return content;
-            }
-            
-            var result = new byte[content.Length / frequency];
-            for (int i = 0; i < result.Length; i++)
-            {
-                result[i] = content[i * frequency];
-            }
-
-            return result;
         }
     }
 }
