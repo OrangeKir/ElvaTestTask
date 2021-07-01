@@ -30,7 +30,7 @@
 
             using (var client = new WebClient())
             {
-                var webStream = client.OpenRead(String.Format(WebMask, address));
+                var webStream = client.OpenRead(String.Format(WebMask, address, ((decimal) frequency - 1) / 1000));
                 var content = new byte[webStream.Length];
                 webStream.Read(content, 0, content.Length);
 
